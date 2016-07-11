@@ -1,8 +1,14 @@
- <link rel="stylesheet" href="/stylesheets/tracks.css">
+<link rel="stylesheet" href="/stylesheets/tracks.css">
 
-<div style="margin-left:50px">
+<div>
   <h1>Tracks</h1>
 </div>
+
+<div>
+  <a href="/tracks/new">Post a new track!</a>
+</div>
+
+<div>
 
 <% @tracks.each do |track| %>
   <div class="track">
@@ -12,3 +18,6 @@
     </p>
   </div>
 <% end %>
+
+</div>
+
