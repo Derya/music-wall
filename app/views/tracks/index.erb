@@ -12,7 +12,7 @@
 
 <% @tracks.each do |track| %>
   <div class="track">
-    <h3><%= track.title %> <small>(by: <%= track.author %>)</small></h3>
+    <h3><a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.author %>)</small></h3>
     <p>
       url: <%= track.song_url %> picture: <%= track.picture_url %>
     </p>
@@ -20,4 +20,3 @@
 <% end %>
 
 </div>
-
