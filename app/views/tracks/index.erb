@@ -1,22 +1,21 @@
 <link rel="stylesheet" href="/stylesheets/tracks.css">
 
-<div>
+<header class="container">
   <h1>Tracks</h1>
-</div>
-
-<div>
   <a href="/tracks/new">Post a new track!</a>
-</div>
+</header>
 
-<div>
+<section class="container">
 
-<% @tracks.each do |track| %>
-  <div class="track">
-    <h3><a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.author %>)</small></h3>
-    <p>
-      url: <%= track.song_url %> picture: <%= track.picture_url %>
-    </p>
-  </div>
-<% end %>
+  <% @tracks.each do |track| %>
+    <div class="track">
 
-</div>
+      <img src="<%= track.picture_url %>"/>
+      <h3><a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.author %>)</small></h3>
+      <p>
+        <a href="/tracks/<%= track.id %>"><%= track.song_url %></a>
+      </p>
+    </div>
+  <% end %>
+
+</section>
