@@ -12,7 +12,6 @@ end
 
 # Homepage (Root path)
 get '/', '/index' do
-  sess
   erb :'index'
 end
 
