@@ -23,12 +23,8 @@ class Track < ActiveRecord::Base
     end
 
     def fix_urls
-      if song_url
-        self.song_url = self.song_url.fix_url
-      end
-      if picture_url
-        self.picture_url = self.picture_url.fix_url
-      end
+      self.song_url = self.song_url.fix_url if song_url
+      self.picture_url = self.picture_url.fix_url if picture_url
     end
   
 end

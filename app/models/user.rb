@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 127 }
   validate :email_is_valid
 
-  before_validation :fix_urls
+  before_validation :fix_url
 
   private
 
@@ -16,24 +16,19 @@ class User < ActiveRecord::Base
       end
     end
 
-    def fix_urls
-      if song_url && !song_url.empty? && !song_url.starts_with?('http')
-        self.song_url.prepend("http://")
-      end
-      if picture_url && !picture_url.empty? && !picture_url.starts_with?('http')
-        self.picture_url.prepend("http://")
-      end
+    def fix_url
+      self.profile_pic_url = self.profile_pic_url.fix_url if profile_pic_url
     end
   
 end
 
 
 
-  create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password"
-    t.string   "profile_pic_url"
-    t.text     "biography"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  # create_table "users", force: :cascade do |t|
+  #   t.string   "username"
+  #   t.string   "password"
+  #   t.string   "profile_pic_url"
+  #   t.text     "biography"
+  #   t.datetime "created_at"
+  #   t.datetime "updated_at"
+  # end
