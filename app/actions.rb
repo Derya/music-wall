@@ -64,6 +64,7 @@ get '/tracks/:id' do
 end
 
 get '/users/logout' do
+  session[:flash] = "Logged out of #{username_by_id(session[:user])}"
   session[:user] = nil
   redirect '/tracks'
 end
@@ -106,7 +107,6 @@ post '/users/register' do
   end
   redirect '/tracks'
 end
-
 
 
 get '/users/all' do

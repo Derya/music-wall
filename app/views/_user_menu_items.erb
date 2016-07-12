@@ -1,14 +1,18 @@
-<% if logged_in %>
-  <li><a href=<%= "/users/#{current_user.id}" %>>Profile</a></li>
-<% else %>
-
-<% end %>
 
 <li><a href=<%= "/users/all" %>>All Posters</a></li>
 
 <% if logged_in %>
-  <li><a href="/users/logout">Logout of <em><%= current_user.username.chomp %></em></a></li>
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username.chomp %></a>
+    <ul class="dropdown-menu">
+      <li><a href=<%= "/users/#{current_user.id}" %>>Profile</a></li>
+      <li><a href="/users/logout">Logout</a></li>
+    </ul>
+  </li>
+
 <% else %>
+
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
     <ul class="dropdown-menu">
@@ -46,4 +50,5 @@
       </form>
     </ul>
   </li>
+  
 <% end %>
