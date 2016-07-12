@@ -1,5 +1,8 @@
 
 class User < ActiveRecord::Base
+  has_many :tracks, through: :upvotes
+  has_many :upvotes
+
   validates :username, presence: true, length: { maximum: 127 }, uniqueness: true
   validates :password, presence: true, length: { maximum: 127 }
   validates :email, presence: true, length: { maximum: 127 }, uniqueness: true
@@ -16,6 +19,10 @@ class User < ActiveRecord::Base
   def password=(new_password)
     @password = Password.create(new_password)
     self.password_hash = @password
+  end
+
+  def upvoted_track?(track)
+    self.tracks.include?(track)
   end
 
   private

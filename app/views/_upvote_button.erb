@@ -1,3 +1,10 @@
-<button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-</button>
+
+<% if Upvote.find_by(user_id: session[:user], track_id: track.id) %>
+  <button type="button" class="btn btn-warning active" aria-label="Left Align">
+    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+  </button>
+<% else %>
+  <button type="button" class="btn btn-warning" aria-label="Left Align">
+    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+  </button>
+<% end %>

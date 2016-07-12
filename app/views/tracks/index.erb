@@ -12,7 +12,17 @@
           <a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.author %>)</small>
         </h3>
         <p>
-          <%= erb :_upvote_button %>
+          
+          <% if current_user.upvoted_track?(track) %>
+            <button type="button" class="btn btn-warning active" aria-label="Left Align">
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            </button>
+          <% else %>
+            <button type="button" class="btn btn-warning" aria-label="Left Align">
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            </button>
+          <% end %>
+
           <a href="/tracks/<%= track.id %>"><%= track.song_url %></a>
         </p>
         <p>
@@ -26,7 +36,3 @@
   </div>
 
 </section>
-
-<button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-</button>

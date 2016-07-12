@@ -1,8 +1,12 @@
 
 
 class Track < ActiveRecord::Base
+  has_many :users, through: :upvotes
+  has_many :upvotes
+  
   validates :title, presence: true, length: { maximum: 127 }
   validates :author, presence: true, length: { maximum: 127 }
+  validates :song_url, uniqueness: true
   validate :song_url_valid
   validate :img_url_valid
   validates :user_id, presence: true
