@@ -14,6 +14,10 @@ class Track < ActiveRecord::Base
   before_validation :fix_urls
   before_validation :fix_empty_strings
 
+  def self.all_ordered_by_likes
+    Track.all.sort { |a, b| b.upvotes.count <=> a.upvotes.count }
+  end
+
   private
 
     def song_url_valid

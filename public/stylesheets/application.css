@@ -22,7 +22,7 @@
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   white-space: nowrap;
-  width: 70%;
+  width: 60%;
 }
 
 .track-right-box .title {
@@ -44,15 +44,15 @@
 
 .track-outer-box {
   padding: 15px;
-  border: 5px solid grey;
+  border: 5px solid white;
   border-radius: 30px;
   transition: 0.4s;
   background-clip: padding-box;
-  background-color: red;
+  background-color: #ff9999;
 }
 
 .track-outer-box:hover {
- background-color: #ff9999;
+ background-color: #b3ffd9;
  background-clip: padding-box;
 }
 

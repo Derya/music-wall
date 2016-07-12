@@ -29,7 +29,7 @@ get '/', '/index' do
 end
 
 get '/tracks', '/tracks/index' do
-  @tracks = Track.all
+  @tracks = Track.all_ordered_by_likes
   erb :'tracks/index'
 end
 
