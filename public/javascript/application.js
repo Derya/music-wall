@@ -24,6 +24,10 @@ $(document).ready(function() {
     }
   });
 
+  $('.nav li').hover(function() {
+    $(this).toggleClass('active');
+  });
+
   //TODO perhaps we can also have functionality on user login form error data here
 
 });

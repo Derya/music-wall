@@ -1,8 +1,7 @@
 
-<li><a href=<%= "/users/all" %>>All Posters</a></li>
-
 <% if logged_in %>
 
+  <li><a href="/tracks/new">Post a track!</a></li>
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username.chomp %></a>
     <ul class="dropdown-menu">
@@ -50,5 +49,5 @@
       </form>
     </ul>
   </li>
-  
+
 <% end %>
