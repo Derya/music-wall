@@ -1,13 +1,13 @@
 
 .track {
-  border: 2px solid grey;
-  border-radius: 10px;
-  min-height: 100px;
+  background-color: pink;
+  height:150px;
 }
 
 .track img {
   height: 100px;
   width: 100px;
+  margin-top: 25px;
   float: left;
   border-radius: 50px;
 }
@@ -27,4 +27,12 @@
 .errors {
   text-align: left;
   color: #b30000;
+}
+
+.dropdown .dropdown-menu form {
+  max-width:200px;
+}
+
+li em {
+  color: #ff3300;
 }

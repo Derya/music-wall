@@ -16,10 +16,8 @@ class User < ActiveRecord::Base
       end
     end
 
-    def email_valid
-      if (picture_url && !picture_url.empty?) && picture_url.scan(URI.regexp).empty?
-        errors.add(:picture_url, "must be a valid url")
-      end
+    def email_is_valid
+      #TODO
     end
 
     def fix_url

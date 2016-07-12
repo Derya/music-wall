@@ -23,7 +23,11 @@
     <div class="errors">
       <ul>
       <% @track.errors.full_messages.each do |track| %>
-        <li><%= track %></li>
+        <% if track == "User can't be blank"%>
+          <li>Must be logged in</li>
+        <% else %>
+          <li><%= track %></li>
+        <% end %>
       <% end %>
       </ul>
     </div>

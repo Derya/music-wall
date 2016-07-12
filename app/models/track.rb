@@ -5,6 +5,7 @@ class Track < ActiveRecord::Base
   validates :author, presence: true, length: { maximum: 127 }
   validate :song_url_valid
   validate :img_url_valid
+  validates :user_id, presence: true
 
   before_validation :fix_urls
 
