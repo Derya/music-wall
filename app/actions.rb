@@ -74,6 +74,10 @@ post '/users/register' do
   redirect '/tracks'
 end
 
+get '/users/all' do
+  erb :'users/all'
+end
+
 get '/users/:id' do
   @user = User.find params[:id]
   erb :'users/show'
