@@ -1,0 +1,5 @@
+<% unless track.song_url.empty? %>
+  <a href="/tracks/<%= track.id %>" target="_blank" class="music-player"><%= track.song_url %></a>
+<% else %>
+  <a href="#" target="_blank" class="music-player">this track has no url!</a>
+<% end %>

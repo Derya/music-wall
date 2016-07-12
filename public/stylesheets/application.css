@@ -1,27 +1,59 @@
-
-.track {
-  background-color: pink;
-  height:150px;
-}
-
-.track img {
+.track-left-box img {
   height: 100px;
   width: 100px;
-  margin-top: 25px;
-  float: left;
+  margin-top: 5px;
   border-radius: 50px;
 }
 
-.track h3 {
-
+.track-left-box .btn {
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
-.track h3 small { 
-
+.track-left-box {
+  float:left;
+  max-width: 30%;
 }
 
-.track:hover {
- background-color: #ff9999 ;
+.track-right-box {
+  float:right;
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
+}
+
+.track-right-box .title {
+  font-size: 1.5em;
+}
+
+.track-right-box .author {
+  font-size: 1.2em;
+}
+
+.track-right-box .music-player {
+  font-size: 1em;
+}
+
+.track-right-box .posted-by {
+  font-size: 0.8em;
+  margin-top:25px;
+}
+
+.track-outer-box {
+  padding: 15px;
+  border: 5px solid grey;
+  border-radius: 30px;
+  transition: 0.4s;
+  background-clip: padding-box;
+  background-color: red;
+}
+
+.track-outer-box:hover {
+ background-color: #ff9999;
+ background-clip: padding-box;
 }
 
 .errors {
@@ -33,6 +65,4 @@
   max-width:200px;
 }
 
-.nav li:hover {
-  
-}
+

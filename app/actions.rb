@@ -44,7 +44,7 @@ post '/tracks' do
     author: params[:author],
     picture_url: params[:picture_url],
     song_url: params[:song_url],
-    user_id: session[:id]
+    user_id: session[:user]
     )
   if @track.save
     redirect '/tracks'

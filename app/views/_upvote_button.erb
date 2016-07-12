@@ -1,4 +1,4 @@
-<% if current_user.upvoted_track?(track) %>
+<% if logged_in && current_user.upvoted_track?(track) %>
   <button type="button" class="btn btn-danger" aria-label="Left Align">
     <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
     <span id="upvote-counter"><%= track.upvotes.count %></span>

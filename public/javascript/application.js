@@ -28,6 +28,14 @@ $(document).ready(function() {
     $(this).toggleClass('active');
   });
 
+  $('.track-right-box').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(!$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+});
+
   //TODO perhaps we can also have functionality on user login form error data here
 
 });

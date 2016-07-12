@@ -6,18 +6,28 @@
 
 
 
-      <div class="track col-md-4 col-sm-6 col-xs-12">
-        <a href="<%= track.picture_url %>" target="_blank"><img src="<%= track.picture_url %>"/></a>
-        <h3>
-          <a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.author %>)</small>
-        </h3>
-        <p>
-          <%= erb :_upvote_button, locals: { track: track } %>
-          <a href="/tracks/<%= track.id %>" target="_blank"><%= track.song_url %></a>
-        </p>
-        <p>
-          posted by: <a href="/users/<%= track.user_id %>"><%= username_by_id(track.user_id) %></a>
-        </p>
+      <div class="track-outer-box col-md-4 col-sm-6 col-xs-12">
+
+
+          <div class="track-left-box">
+            <a href="<%= track.picture_url %>" target="_blank"><img src="<%= track.picture_url %>"/></a>
+            <%= erb :_upvote_button, locals: { track: track } %>
+          </div>
+
+
+          <div class="track-right-box">
+            <a href="/tracks/<%= track.id %>" class="title"><%= track.title %></a>
+            <p class="author">
+              (by: <%= track.author %>)
+            </p>
+            <%= erb :_music_player, locals: { track: track } %>
+            <p class="posted-by">
+            posted by: <a href="/users/<%= track.user_id %>"><%= username_by_id(track.user_id) %></a>
+            </p>
+          </div>
+
+
+
       </div>
 
 

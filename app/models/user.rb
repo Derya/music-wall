@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 127 }, uniqueness: true
   validate :email_is_valid
 
+  before_validation :fix_empty_strings
   before_validation :fix_url
 
   include BCrypt
@@ -39,6 +40,10 @@ class User < ActiveRecord::Base
 
     def fix_url
       self.profile_pic_url = self.profile_pic_url.fix_url if profile_pic_url
+    end
+
+    def fix_empty_strings
+      self.profile_pic_url = nil if self.profile_pic_url && self.profile_pic_url.empty?
     end
   
 end
