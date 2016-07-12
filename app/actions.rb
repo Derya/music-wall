@@ -1,6 +1,7 @@
 
-
 enable :sessions
+
+# TODO: remove the thing that displays flashes, use popups instead or something
 
 helpers do 
   def current_user
@@ -10,16 +11,24 @@ helpers do
   end
 
   def logged_in
-    current_user
+    current_user != nil
+  end
+
+  def username_by_id(id)
+    user = User.find_by(id: id)
+    if user
+      user.username
+    else
+      "deleted"
+    end
   end
 end
 
-# Homepage (Root path)
 get '/', '/index' do
   erb :'index'
 end
 
-get '/tracks' do
+get '/tracks', '/tracks/index' do
   @tracks = Track.all
   erb :'tracks/index'
 end
@@ -45,8 +54,13 @@ post '/tracks' do
 end
 
 get '/tracks/:id' do
-  @track = Track.find params[:id]
-  erb :'tracks/show'
+  @track = Track.find_by(id: params[:id])
+  if @track #track id isnt bugged
+    erb :'tracks/show'
+  else #track id seems to be bugged, somehow
+    #TODO: decide what functionality we want here
+    erb :'tracks/show'
+  end
 end
 
 get '/users/logout' do
@@ -55,28 +69,45 @@ get '/users/logout' do
 end
 
 post '/users/login' do
-  @user = User.where(username: params[:username], password: params[:password])
-  unless @user.empty?
-    session[:user] = @user.first.id
+  if params[:username].empty? || params[:password].empty?
+    session[:flash] = "Empty login or password."
   else
-
+    user = User.find_by(username: params[:username])
+    if user # username exists in database
+      if user.password == params[:password] # password valid
+        session[:user] = user.id
+        session[:flash] = "Logged in as #{params[:username]}"
+      else #password invalid
+        session[:flash] = "Invalid password"
+      end
+    else #username doesn't exist in database
+      session[:flash] = "No user with username #{params[:username]}"
+    end
   end
   redirect '/tracks'
 end
+
 
 post '/users/register' do
+
   @new_user = User.new(
     username: params[:username],
-    email: params[:email],
-    password: params[:password],
+    email: params[:email]
     )
+  @new_user.password = params[:password]
   if @new_user.save
-
+    session[:flash] = "Account #{params[:username]} created!"
   else
-
+    session[:flash] = "Errors for creation of account #{params[:username]}: "
+    @new_user.errors.full_messages.each do |error_msg|
+      session[:flash] = session[:flash] + error_msg + ", "
+    end
+    session[:flash] = session[:flash].chomp(", ")
   end
   redirect '/tracks'
 end
+
+
 
 get '/users/all' do
   erb :'users/all'

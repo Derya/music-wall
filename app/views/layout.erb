@@ -12,11 +12,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/stylesheets/application.css">
 
-  <title></title>
+  <title>Music Wall</title>
 </head>
 <body>
 
   <%= erb :_menu %>
+  <% if session[:flash] %>
+    <div class="alert alert-success" role="alert"><%= session[:flash] %></div>
+    <% session.delete(:flash) %>
+  <% end %>
   <%= yield %>
 
 </body>

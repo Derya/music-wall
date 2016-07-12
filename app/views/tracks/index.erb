@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="/stylesheets/tracks.css">
 
 <header class="container">
   <h1>Tracks</h1>
+  <!-- TODO: PUT THIS ON MENUBAR -->
   <a href="/tracks/new">Post a new track!</a>
 </header>
 
@@ -9,17 +9,22 @@
 
   <div class="row">
     <% @tracks.each do |track| %>
-      <div class="track col-md-4 col-sm-6 col-xs-12">
 
+
+
+      <div class="track col-md-4 col-sm-6 col-xs-12">
         <img src="<%= track.picture_url %>"/>
         <h3><a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.author %>)</small></h3>
         <p>
           <a href="/tracks/<%= track.id %>"><%= track.song_url %></a>
         </p>
         <p>
-          posted by: <a href="/users/<%= track.user_id %>"><%= User.find(track.user_id).username %></a>
+          posted by: <a href="/users/<%= track.user_id %>"><%= username_by_id(track.user_id) %></a>
         </p>
       </div>
+
+
+
     <% end %>
   </div>
 

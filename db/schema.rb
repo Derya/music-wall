@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712041121) do
+ActiveRecord::Schema.define(version: 20160712165721) do
 
   create_table "tracks", force: :cascade do |t|
     t.string   "title"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160712041121) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.string   "password"
+    t.string   "password_hash"
     t.string   "profile_pic_url"
     t.text     "biography"
     t.datetime "created_at"

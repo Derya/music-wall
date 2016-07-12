@@ -20,8 +20,10 @@ $(document).ready(function() {
     else
     {
       event.preventDefault();
-      // CHANGE BOOTSTRAP FORM THING
+      //TODO perhaps we can send error data about the form here
     }
   });
+
+  //TODO perhaps we can also have functionality on user login form error data here
 
 });
