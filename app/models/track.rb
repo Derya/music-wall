@@ -23,11 +23,11 @@ class Track < ActiveRecord::Base
     end
 
     def fix_urls
-      if song_url && !song_url.empty? && !song_url.starts_with?('http')
-        self.song_url.prepend("http://")
+      if song_url
+        self.song_url = self.song_url.fix_url
       end
-      if picture_url && !picture_url.empty? && !picture_url.starts_with?('http')
-        self.picture_url.prepend("http://")
+      if picture_url
+        self.picture_url = self.picture_url.fix_url
       end
     end
   

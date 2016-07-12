@@ -1,42 +1,44 @@
 <link rel="stylesheet" href="/stylesheets/new.css">
 
-<% if @track.errors.any? %>
-  <div>
-    <strong>Some issues with your track, please fix them:</strong>
-    <ul>
+
+<form method="post" action="/tracks" class="container">
+  <div class="form-group">
+    <label for="track title">Title:</label>
+    <input name="title" type="text" class="form-control" id="track title" placeholder="track title">
+  </div>
+  <div class="form-group">
+    <label for="track author">Author:</label>
+    <input name="author" type="text" class="form-control" id="track author" placeholder="track author">
+  </div>
+  <div class="form-group">
+    <label for="track url">URL:</label>
+    <input name="song_url" type="text" class="form-control" id="track url" placeholder="URL to the track (youtube or audio file)">
+  </div>
+  <div class="form-group">
+    <label for="picture url">Picture URL:</label>
+    <input name="picture_url" type="text" class="form-control" id="picture url" placeholder="URL to track picture">
+  </div>
+
+  <% if @track.errors.any? %>
+    <div class="errors">
+      <ul>
       <% @track.errors.full_messages.each do |track| %>
         <li><%= track %></li>
       <% end %>
-    </ul>
+      </ul>
+    </div>
+  <% end %>
+<!-- 
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
   </div>
-<% end %>
-
-<form method="post" action="/tracks">
-
-  <div>
-    <label>Title:</label>
-    <input type="text" name="title" value="<%= @track.title %>">
-  </div>
-
-  <div>
-    <label>Author:</label>
-    <input type="text" name="author" value="<%= @track.author %>">
-  </div>
-
-  <div>
-    <label>URL:</label>
-    <input type="text" name="song_url" value="<%= @track.song_url %>">
-  </div>
-
-  <div>
-    <label>Picture URL:</label>
-    <input type="text" name="picture_url" value="<%= @track.picture_url %>">
-  </div>
-
-  <div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </div>
-
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> a checkbox!
+    </label>
+  </div> -->
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
 

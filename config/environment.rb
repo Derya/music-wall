@@ -37,3 +37,5 @@ require APP_ROOT.join('config', 'database')
 
 # Load the routes / actions
 require APP_ROOT.join('app', 'actions')
+
+require_relative 'utility'

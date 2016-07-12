@@ -1,5 +1,10 @@
+
+
+enable :sessions
+
+
 # Homepage (Root path)
-get '/' do
+get '/', '/index' do
   erb :'index'
 end
 
