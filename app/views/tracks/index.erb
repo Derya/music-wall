@@ -7,13 +7,13 @@
 
 
       <div class="track col-md-4 col-sm-6 col-xs-12">
-        <img src="<%= track.picture_url %>"/>
+        <a href="<%= track.picture_url %>" target="_blank"><img src="<%= track.picture_url %>"/></a>
         <h3>
           <a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.author %>)</small>
         </h3>
         <p>
           <%= erb :_upvote_button, locals: { track: track } %>
-          <a href="/tracks/<%= track.id %>"><%= track.song_url %></a>
+          <a href="/tracks/<%= track.id %>" target="_blank"><%= track.song_url %></a>
         </p>
         <p>
           posted by: <a href="/users/<%= track.user_id %>"><%= username_by_id(track.user_id) %></a>
