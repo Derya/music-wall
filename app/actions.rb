@@ -8,6 +8,10 @@ helpers do
       User.find(session[:user])
     end
   end
+
+  def logged_in
+    current_user
+  end
 end
 
 # Homepage (Root path)

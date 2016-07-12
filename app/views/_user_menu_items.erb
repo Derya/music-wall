@@ -1,0 +1,49 @@
+<% if logged_in %>
+  <li><a href=<%= "/users/#{current_user.id}" %>>Profile</a></li>
+<% else %>
+
+<% end %>
+
+<li><a href=<%= "/users/all" %>>All Posters</a></li>
+
+<% if logged_in %>
+  <li><a href="/users/logout">Logout of <em><%= current_user.username.chomp %></em></a></li>
+<% else %>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
+    <ul class="dropdown-menu">
+      <form method="post" action="/users/login" class="container" id="login-form">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input name="username" type="text" class="form-control" id="username" placeholder="Jane Cena">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input name="password" type="password" class="form-control" id="password" placeholder="••••••••••">
+        </div>
+        <button type="submit" class="btn btn-default">Login</button>
+        <button class="btn btn-default" id="register-button">Register</button>
+      </form>
+      <form method="post" action="users/register" class="container" id="register-form" style="display:none">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input name="username" type="text" class="form-control" id="username" placeholder="Jane Cena">
+        </div>
+        <div class="form-group">
+          <label for="password_register">Password:</label>
+          <input name="password" type="password" class="form-control" id="password_register" placeholder="••••••••••">
+        </div>
+        <div class="form-group">
+          <label for="password_check">Confirm Password:</label>
+          <input name="password_check" type="password" class="form-control" id="password_check" placeholder="••••••••••">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input name="email" type="email" class="form-control" id="email" placeholder="example@domain.ext">
+        </div>
+        <button type="submit" class="btn btn-default" id="register-form-submitter">Submit</button>
+        <button class="btn btn-default" id="register-cancel-button">Cancel</button>
+      </form>
+    </ul>
+  </li>
+<% end %>
