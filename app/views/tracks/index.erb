@@ -16,6 +16,9 @@
         <p>
           <a href="/tracks/<%= track.id %>"><%= track.song_url %></a>
         </p>
+        <p>
+          posted by: <a href="/users/<%= track.user_id %>"><%= User.find(track.user_id).username %></a>
+        </p>
       </div>
     <% end %>
   </div>
