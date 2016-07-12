@@ -28,6 +28,7 @@ $(document).ready(function() {
     $(this).toggleClass('active');
   });
 
+  // so this is only for one page but idk how to change how the scripts are included
   $('.track-right-box').bind('mouseenter', function(){
     var $this = $(this);
 

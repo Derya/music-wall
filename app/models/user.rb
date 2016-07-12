@@ -1,7 +1,8 @@
 
 class User < ActiveRecord::Base
   has_many :tracks, through: :upvotes
-  has_many :upvotes
+  has_many :upvotes, dependant: :destroy
+  has_many :reviews, dependant: :destroy
 
   validates :username, presence: true, length: { maximum: 127 }, uniqueness: true
   validates :password, presence: true, length: { maximum: 127 }

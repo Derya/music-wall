@@ -1,0 +1,60 @@
+.track-left-box img {
+  height: 100px;
+  width: 100px;
+  margin-top: 5px;
+  border-radius: 50px;
+}
+
+.track-left-box .btn {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.track-left-box {
+  float:left;
+  max-width: 30%;
+}
+
+.track-right-box {
+  float:right;
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 60%;
+}
+
+.track-right-box .title {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #e60000;
+}
+
+.track-right-box .author {
+  font-size: 1.2em;
+}
+
+.track-right-box .music-player {
+  font-size: 1em;
+}
+
+.track-right-box .posted-by {
+  font-size: 0.8em;
+  margin-top:25px;
+}
+
+.track-outer-box {
+  padding: 15px;
+  border: 5px solid white;
+  border-radius: 30px;
+  transition: 0.4s;
+  background-clip: padding-box;
+  background-color: #e6e6e6;
+}
+
+.track-outer-box:hover {
+  background-color: #ffb3b3;
+  background-clip: padding-box;
+  /*cursor:pointer;*/
+}
