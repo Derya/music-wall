@@ -1,10 +1,11 @@
-
-<% if Upvote.find_by(user_id: session[:user], track_id: track.id) %>
-  <button type="button" class="btn btn-warning active" aria-label="Left Align">
-    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+<% if current_user.upvoted_track?(track) %>
+  <button type="button" class="btn btn-danger" aria-label="Left Align">
+    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+    <span id="upvote-counter"><%= track.upvotes.count %></span>
   </button>
 <% else %>
-  <button type="button" class="btn btn-warning" aria-label="Left Align">
+  <button type="button" class="btn btn-success" aria-label="Left Align">
     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+    <span id="upvote-counter"><%= track.upvotes.count %></span>
   </button>
 <% end %>
