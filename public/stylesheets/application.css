@@ -1,20 +1,8 @@
-.container {
-  margin: 0 auto;
-  padding-left: 30px;
-  padding-right: 30px;
-  max-width: 600px;
-  text-align: center;
-}
 
 .track {
   border: 2px solid grey;
-  display: block;
-  width: 80%;
-  padding: 10px;
-  margin: 10px auto;
   border-radius: 10px;
-  transition: 0.8s;
-  min-height: 120px;
+  min-height: 100px;
 }
 
 .track img {

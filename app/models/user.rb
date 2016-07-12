@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
 
   private
 
+    def profile_pic_url_valid
+      if (profile_pic_url && !profile_pic_url.empty?) && profile_pic_url.scan(URI.regexp).empty?
+        errors.add(:profile_pic_url, "must be a valid url")
+      end
+    end
+
     def email_valid
       if (picture_url && !picture_url.empty?) && picture_url.scan(URI.regexp).empty?
         errors.add(:picture_url, "must be a valid url")
