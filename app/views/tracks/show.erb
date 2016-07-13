@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="/stylesheets/show.css">
+<link href="/stylesheets/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+<script src="/javascript/star-rating.js" type="text/javascript"></script>
 
 
 <div class="container jumbotron track-info">
@@ -19,26 +21,7 @@
 
 </div>
 
-<% unless logged_in && current_user.reviewed_track?(@track) %>
-
-  <div class="container">
-    <form class="review-form">
-
-      <div class="form-group">
-        <label for="comment">Leave a review!</label>
-        <textarea class="form-control" rows="5" id="comment"></textarea>
-      </div>
-
-      <div class="form-group">
-
-      </div>
-
-    </form>
-  </div>
-
-<% else %>
-
-<% end %>
+<%= erb :_review_form, locals: { track: @track, review: @review } %>
 
 <div class="container reviews">
   <% @reviews.each do |review| %>
@@ -46,15 +29,14 @@
     <!-- TODO: look at this -->
     <% if logged_in && review.user.id == current_user.id %>
 
+    <!-- TODO: format dates more nicely -->
     <h4 class="review-header user-owns-review">
-      Your review from <span class="review-date"><%= review.created_at %></span>, last modified <span class="review-date"><%= review.updated_at %></span>
+      <form style="display:inline" method="get" action="/reviews/delete/<%= @track.id %>"><button type="submit" class="btn btn-danger">Delete</button></form> Your review from <span class="review-date"><%= review.created_at.strftime("%m/%d/%Y") %></span>, last modified <span class="review-date"><%= review.updated_at.strftime("%m/%d/%Y") %></span>
     </h4>
-    <!-- edit and delete buttons go here -->
-
     <% else %>
 
     <h4 class="review-header">
-      Review by <a href="/users/<%= review.user.id %>" class="review-username"><%= review.user.username %></a> on <span class="review-date"><%= review.created_at %></span>, last modified <span class="review-date"><%= review.updated_at %></span>
+      Review by <a href="/users/<%= review.user.id %>" class="review-username"><%= review.user.username %></a> on <span class="review-date"><%= review.created_at.strftime("%m/%d/%Y") %></span>, last modified <span class="review-date"><%= review.updated_at.strftime("%m/%d/%Y") %></span>
     </h4>
 
     <% end %>
@@ -62,6 +44,16 @@
     <p class="review-content">
       <%= review.content %>
     </p>
+    <table>
+      <tr>
+        <td style="padding-right:10px">
+          <label for="rating-display" class="control-label">Rating</label>
+        </td>
+        <td>
+          <input data-size="xs" id="rating-display" name="rating-display" value="<%= review.rating %>" class="rating-loading">
+        </td>
+      </tr>
+    </table>
     <hr/>
 
   <% end %>

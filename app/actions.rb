@@ -73,10 +73,41 @@ get '/tracks/:id' do
   @track = Track.find_by(id: params[:id])
   if @track
     @reviews = @track.reviews
+    @review = Review.new
     erb :'tracks/show'
   else
     redirect '/tracks'
   end
+end
+
+post '/tracks/reviews/:id' do
+  @review = Review.new(
+    content: params[:content],
+    user_id: session[:user],
+    track_id: params[:id],
+    rating: params[:rating]
+    )
+  if @review.save
+    redirect '/tracks/' + params[:id]
+  else
+    @track = Track.find_by(id: params[:id])
+    if @track
+      @reviews = @track.reviews
+      erb :'tracks/show'
+    else
+      redirect '/tracks'
+    end
+  end
+end
+
+get '/reviews/delete/:id' do
+  review = Review.find_by(user_id: session[:user], track_id: params[:id])
+  if review.destroy
+    session[:flash] = "Review deleted!"
+  else
+    session[:flash] = "Couldn't delete your review, sorry."
+  end
+  redirect '/tracks/' + params[:id]
 end
 
 get '/users/logout' do
@@ -91,6 +122,7 @@ post '/users/login' do
   else
     user = User.find_by(username: params[:username])
     if user # username exists in database
+      # must evaluate in this order for password hash
       if user.password == params[:password] # password valid
         session[:user] = user.id
         session[:flash] = "Logged in as #{params[:username]}"
@@ -133,8 +165,6 @@ get '/users/:id' do
   @user = User.find params[:id]
   erb :'users/show'
 end
-
-
 
 
 

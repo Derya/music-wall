@@ -1,0 +1,38 @@
+
+<% if logged_in && !current_user.reviewed_track?(track) %>
+
+  <form class="review-form container" method="post" action="reviews/<%= track.id %>">
+
+    <div class="form-group">
+      <label for="content">Leave a review!</label>
+      <textarea class="form-control" type="text" name="content" rows="5" id="content"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="rating" class="control-label">Rating:</label>
+      <input id="rating" name="rating" class="rating" data-min="0" data-max="5" data-step="1">
+    </div>
+    
+  <% if review.errors.any? %>
+    <div class="errors">
+      <ul>
+      <% review.errors.full_messages.each do |review| %>
+        <% if review == "User can't be blank"%>
+          <li>Must be logged in</li>
+        <% else %>
+          <li><%= review %></li>
+        <% end %>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <button id="review-submit-form" type="submit" class="btn btn-default">Submit</button>
+
+  </form>
+
+
+
+<% else %>
+
+<% end %>

@@ -60,15 +60,24 @@ $(document).ready(function() {
     $(this).toggleClass('active');
   });
 
-  // so this is only for one page but idk how to change how the scripts are included
+  // so a lot of these are only for one page but idk if that is ok
   $('.track-right-box').bind('mouseenter', function(){
     var $this = $(this);
 
     if(!$this.attr('title')){
         $this.attr('title', $this.text());
     }
-});
+  });
 
   //TODO perhaps we can also have functionality on user login form error data here
 
 });
+
+
+$(document).on('ready', function(){
+    $('#rating-display').rating({displayOnly: true, step: 0.5});
+});
+
+
+
+

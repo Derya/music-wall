@@ -28,7 +28,12 @@ class User < ActiveRecord::Base
   end
 
   def reviewed_track?(track)
-    self.reviews.include?(track)
+    self.reviews.each do |review|
+      if review.track == track
+        return true
+      end
+    end
+    false
   end
 
   private
