@@ -27,14 +27,33 @@ $(document).ready(function() {
 
   $('.updownvotebutton').click(function() {
 
+    button = $(this);
+    span1 = button.children(":first");
+    span2 = button.children(":nth-child(2)");
+    send_url = button.attr('elephants');
+
     $.ajax({
       method: "GET",
-      url: $(this).attr('elephants')
-    }).done(function() {
-      
+      url: send_url,
+      success: function() {
+        span1.toggleClass('glyphicon-thumbs-down');
+        span1.toggleClass('glyphicon-thumbs-up');
+        button.toggleClass('btn-danger');
+        button.toggleClass('btn-success');
+        if (button.hasClass('btn-danger'))
+        {
+          new_send_url = send_url.replace("upvote","downvote");
+          new_html = (parseInt(span2.html()) - 1).toString();
+        }
+        else
+        {
+          new_send_url = send_url.replace("downvote","upvote");
+          new_html = (parseInt(span2.html()) + 1).toString();
+        }
+        button.attr('elephants', new_send_url);
+        span2.html(new_html);
+      }
     });
-
-
   });
 
   $('.nav li').hover(function() {

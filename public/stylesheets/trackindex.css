@@ -44,6 +44,10 @@
   margin-top:25px;
 }
 
+.track-right-box .posted-by a {
+    color: #009933;
+}
+
 .track-outer-box {
   padding: 15px;
   border: 5px solid white;
