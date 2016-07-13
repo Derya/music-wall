@@ -2,8 +2,8 @@
 
 class Track < ActiveRecord::Base
   has_many :users, through: :upvotes
-  has_many :upvotes, dependant: :destroy
-  has_many :reviews, dependant: :destroy
+  has_many :upvotes
+  has_many :reviews
   
   validates :title, presence: true, length: { maximum: 127 }
   validates :author, presence: true, length: { maximum: 127 }

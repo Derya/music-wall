@@ -1,10 +1,10 @@
 <% if logged_in && current_user.upvoted_track?(track) %>
-  <button type="button" class="btn btn-danger" aria-label="Left Align">
+  <button type="button" elephants="/tracks/downvote/<%=track.id%>" class="updownvotebutton btn btn-danger" aria-label="Left Align">
     <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
     <span id="upvote-counter"><%= track.upvotes.count %></span>
   </button>
 <% else %>
-  <button type="button" class="btn btn-success" aria-label="Left Align">
+  <button type="button" elephants="/tracks/upvote/<%=track.id%>" class="updownvotebutton btn btn-success" aria-label="Left Align">
     <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
     <span id="upvote-counter"><%= track.upvotes.count %></span>
   </button>

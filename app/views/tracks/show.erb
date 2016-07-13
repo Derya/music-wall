@@ -1,20 +1,68 @@
 <link rel="stylesheet" href="/stylesheets/show.css">
 
-<h1><%= @track.title %></h1>
 
-<p>
-  Author: <%= @track.author %>
-</p>
+<div class="container jumbotron track-info">
 
-<p>
-  <%= @track.song_url  %>
-</p>
+  <a href="<%= @track.picture_url %>" target="_blank"><img src="<%= @track.picture_url %>" class="img-responsive" alt="Responsive image"/></a>
 
-<p>
-  <%= @track.picture_url  %>
-</p>
+  <h1>
+    <%= @track.title %>
+  </h1>
 
+  <h2>
+    <small>Author: <%= @track.author %></small>
+  </h2>
 
-<!--TODO: PUT THIS ON MENUBAR -->
-<hr/>
-<a href="/tracks">Back to All Tracks</a>
+  <p>
+    <%= @track.song_url  %>
+  </p>
+
+</div>
+
+<% unless logged_in && current_user.reviewed_track?(@track) %>
+
+  <div class="container">
+    <form class="review-form">
+
+      <div class="form-group">
+        <label for="comment">Leave a review!</label>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+      </div>
+
+      <div class="form-group">
+
+      </div>
+
+    </form>
+  </div>
+
+<% else %>
+
+<% end %>
+
+<div class="container reviews">
+  <% @reviews.each do |review| %>
+
+    <!-- TODO: look at this -->
+    <% if logged_in && review.user.id == current_user.id %>
+
+    <h4 class="review-header user-owns-review">
+      Your review from <span class="review-date"><%= review.created_at %></span>, last modified <span class="review-date"><%= review.updated_at %></span>
+    </h4>
+    <!-- edit and delete buttons go here -->
+
+    <% else %>
+
+    <h4 class="review-header">
+      Review by <a href="/users/<%= review.user.id %>" class="review-username"><%= review.user.username %></a> on <span class="review-date"><%= review.created_at %></span>, last modified <span class="review-date"><%= review.updated_at %></span>
+    </h4>
+
+    <% end %>
+
+    <p class="review-content">
+      <%= review.content %>
+    </p>
+    <hr/>
+
+  <% end %>
+</div>

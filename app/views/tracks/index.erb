@@ -21,7 +21,11 @@
             <p class="author">
               (by: <%= track.author %>)
             </p>
-            <%= erb :_music_player, locals: { track: track } %>
+            <% unless track.song_url.empty? %>
+              <a href="/tracks/<%= track.id %>" target="_blank" class="music-player"><%= track.song_url %></a>
+            <% else %>
+              <a href="#" target="_blank" class="music-player">this track has no url!</a>
+            <% end %>
             <p class="posted-by">
             posted by: <a href="/users/<%= track.user_id %>"><%= username_by_id(track.user_id) %></a>
             </p>

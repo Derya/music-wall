@@ -1,8 +1,8 @@
 
 class User < ActiveRecord::Base
   has_many :tracks, through: :upvotes
-  has_many :upvotes, dependant: :destroy
-  has_many :reviews, dependant: :destroy
+  has_many :upvotes
+  has_many :reviews
 
   validates :username, presence: true, length: { maximum: 127 }, uniqueness: true
   validates :password, presence: true, length: { maximum: 127 }
@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
 
   def upvoted_track?(track)
     self.tracks.include?(track)
+  end
+
+  def reviewed_track?(track)
+    self.reviews.include?(track)
   end
 
   private

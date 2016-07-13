@@ -53,13 +53,29 @@ post '/tracks' do
   end
 end
 
+get '/tracks/upvote/:id' do
+  if logged_in && current_user.upvotes.where(track_id: params[:id]).empty?
+    @upvote = Upvote.new
+    @upvote.user = current_user
+    @upvote.track = Track.find(params[:id])
+    @upvote.save!
+  end
+end
+
+get '/tracks/downvote/:id' do
+  if logged_in
+    upvote = Upvote.find_by(track_id: params[:id], user_id: session[:user])
+    upvote.destroy if upvote
+  end
+end
+
 get '/tracks/:id' do
   @track = Track.find_by(id: params[:id])
-  if @track #track id isnt bugged
+  if @track
+    @reviews = @track.reviews
     erb :'tracks/show'
-  else #track id seems to be bugged, somehow
-    #TODO: decide what functionality we want here
-    erb :'tracks/show'
+  else
+    redirect '/tracks'
   end
 end
 

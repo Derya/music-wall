@@ -24,6 +24,19 @@ $(document).ready(function() {
     }
   });
 
+
+  $('.updownvotebutton').click(function() {
+
+    $.ajax({
+      method: "GET",
+      url: $(this).attr('elephants')
+    }).done(function() {
+      
+    });
+
+
+  });
+
   $('.nav li').hover(function() {
     $(this).toggleClass('active');
   });
